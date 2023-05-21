@@ -1,12 +1,40 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:sayuria/models/product_model.dart';
 import 'package:sayuria/pages/product_detail_navbar.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
   const ProductDetail({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<ProductDetail> createState() => _ProductDetailState();
+}
 
+Future<List<ProductModel>> fetchProduct() async {
+  final response = await http.get(
+      Uri.parse('http://192.168.1.10:8000/api/product/'));
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body);
+    var parsed = data.cast<Map<String, dynamic>>();
+    return parsed.map<ProductModel>((json) => ProductModel.fromJson(json))
+        .toList();
+  } else {
+    throw Exception('Failed');
+  }
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  late Future<List<ProductModel>> products;
+
+  @override
+  void initState(){
+    super.initState();
+    products = fetchProduct();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Widget header(){
       return Column(
         children: [
@@ -36,7 +64,6 @@ class ProductDetail extends StatelessWidget {
         ]
       );
     }
-
     return Scaffold(
       body: ListView(
         children: [

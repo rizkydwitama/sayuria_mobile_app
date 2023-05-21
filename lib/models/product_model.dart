@@ -1,8 +1,8 @@
 class ProductModel{
-  late int id, harga_sayur, stock;
-  late String nama_sayur, deskripsi, gambar;
+  final int id, harga_sayur, stock;
+  final String nama_sayur, deskripsi, gambar;
 
-  ProductModel({
+  const ProductModel({
     required this.id,
     required this.nama_sayur,
     required this.harga_sayur,
@@ -11,23 +11,14 @@ class ProductModel{
     required this.gambar
   });
 
-  ProductModel.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    nama_sayur = json['nama_sayur'];
-    harga_sayur = json['harga_sayur'];
-    stock = json['stock'];
-    deskripsi = json['deskripsi'];
-    gambar = json['gambar'];
-  }
-
-  Map<String, dynamic> toJson(){
-    return{
-      'id' : id,
-      'nama_sayur' : nama_sayur,
-      'harga_sayur' : harga_sayur,
-      'stock' : stock,
-      'deskripsi' : deskripsi,
-      'gambar' : gambar
-    };
+  factory ProductModel.fromJson(Map<String, dynamic> json){
+    return ProductModel(
+        id: json['id'],
+        nama_sayur: json['nama_sayur'],
+        harga_sayur: json['harga_sayur'],
+        stock: json['stock'],
+        deskripsi: json['deskripsi'],
+        gambar: json['gambar'],
+    );
   }
 }
