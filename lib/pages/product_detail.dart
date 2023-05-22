@@ -1,12 +1,15 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:sayuria/models/product_model.dart';
-import 'package:sayuria/pages/product_detail_navbar.dart';
 
-class ProductDetail extends StatelessWidget {
-  late Future<List<ProductModel>> products;
-  ProductDetail({super.key, required this.products});
+class ProductDetail extends StatefulWidget {
+  final Map<String, dynamic> products;
+  ProductDetail({Key? key, required this.products}) : super(key: key);
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  late final Map<String, dynamic> products;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +43,12 @@ class ProductDetail extends StatelessWidget {
       );
     }
     return Scaffold(
+
       body: ListView(
         children: [
           header(),
           Image.asset(
-            'assets/images/kembang_kol.png',
+            'assets/images/products/${widget.products['gambar']}',
             width: MediaQuery.of(context).size.width,
             height: 315,
             fit: BoxFit.cover,
@@ -55,9 +59,9 @@ class ProductDetail extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
-                    'Nama Produk',
-                    style: TextStyle(
+                  child: Text(
+                    widget.products['namaSayur'],
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20
                     ),
@@ -66,11 +70,11 @@ class ProductDetail extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(top: 10),
-                  child: const Text(
-                      'Stock: x',
-                      style: TextStyle(
+                  child: Text(
+                      'Stock: ${widget.products['stock']}',
+                      style: const TextStyle(
                           fontSize: 15,
-                          fontWeight: FontWeight.w300
+                          fontWeight: FontWeight.w400
                       )
                   ),
                 ),
@@ -130,9 +134,9 @@ class ProductDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Text(
-                          'Rp x.xxx',
-                          style: TextStyle(
+                      Text(
+                          'Rp ${widget.products['harga']}',
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20
                           )
@@ -157,8 +161,8 @@ class ProductDetail extends StatelessWidget {
                         ),
                         Container(
                           alignment: Alignment.centerLeft,
-                          child: const Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                          child: Text(
+                            widget.products['deskripsi'],
                             textAlign: TextAlign.justify,
                           ),
                         )
@@ -170,7 +174,33 @@ class ProductDetail extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const ProductDetailNavbar(),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 80,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: (){},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen,
+                minimumSize: const Size.fromHeight(55),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)
+                )
+            ),
+            child: const Text(
+              'Tambah ke Keranjang',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20
+              ),
+            ),
+          ),
+        ),
+      )
     );
   }
 }

@@ -102,9 +102,16 @@ class _ProductPageState extends State<ProductPage> {
                               return Card(
                                 child: GestureDetector(
                                   onTap: (){
+                                    print(snapshot.data![index].nama_sayur);
                                     Navigator.push (
                                         context, MaterialPageRoute(
-                                        builder: (context) => ProductDetail(products: products)
+                                        builder: (context) => ProductDetail(products: {
+                                          'namaSayur' : snapshot.data![index].nama_sayur,
+                                          'harga' : snapshot.data![index].harga_sayur,
+                                          'stock' : snapshot.data![index].stock,
+                                          'deskripsi' : snapshot.data![index].deskripsi,
+                                          'gambar' : snapshot.data![index].gambar
+                                        })
                                     ),
                                     );
                                   },
