@@ -19,7 +19,7 @@ class ProductAppBar extends StatelessWidget {
           Text(
               'List Produk',
               style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.lightGreen,
                   fontSize: 20,
                   fontWeight: FontWeight.bold
               )

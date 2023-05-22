@@ -4,34 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:sayuria/models/product_model.dart';
 import 'package:sayuria/pages/product_detail_navbar.dart';
 
-class ProductDetail extends StatefulWidget {
-  const ProductDetail({Key? key}) : super(key: key);
-
-  @override
-  State<ProductDetail> createState() => _ProductDetailState();
-}
-
-Future<List<ProductModel>> fetchProduct() async {
-  final response = await http.get(
-      Uri.parse('http://192.168.1.10:8000/api/product/'));
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body);
-    var parsed = data.cast<Map<String, dynamic>>();
-    return parsed.map<ProductModel>((json) => ProductModel.fromJson(json))
-        .toList();
-  } else {
-    throw Exception('Failed');
-  }
-}
-
-class _ProductDetailState extends State<ProductDetail> {
+class ProductDetail extends StatelessWidget {
   late Future<List<ProductModel>> products;
-
-  @override
-  void initState(){
-    super.initState();
-    products = fetchProduct();
-  }
+  ProductDetail({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +28,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   'Detail Produk',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.green,
+                    color: Colors.lightGreen,
                     fontWeight: FontWeight.bold
                   ),
                 ),
@@ -110,7 +85,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: Colors.lightGreen,
                                 borderRadius: BorderRadius.circular(8 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -137,7 +112,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           const SizedBox(width: 10,),
                           Container(
                             decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: Colors.lightGreen,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(

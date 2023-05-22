@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sayuria/models/product_model.dart';
+import 'package:sayuria/pages/product_detail.dart';
 import 'widgets/product_app_bar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -101,8 +102,10 @@ class _ProductPageState extends State<ProductPage> {
                               return Card(
                                 child: GestureDetector(
                                   onTap: (){
-                                    Navigator.pushNamed(
-                                        context, '/product-detail/'
+                                    Navigator.push (
+                                        context, MaterialPageRoute(
+                                        builder: (context) => ProductDetail(products: products)
+                                    ),
                                     );
                                   },
                                   child: Container(

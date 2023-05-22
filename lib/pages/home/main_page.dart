@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     Widget cartButton(){
       return FloatingActionButton(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.lightGreen,
         onPressed: (){},
         child: Image.asset('assets/images/ic_cart.png', width: 30,),
       );
@@ -35,13 +35,13 @@ class _MainPageState extends State<MainPage> {
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.lightGreen,
         items: [
           BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/ic_home.png',
                 width: 30,
-                color: currentIndex == 0? Colors.green : Colors.black,
+                color: currentIndex == 0? Colors.lightGreen : Colors.black,
               ),
               label: 'Beranda'
           ),
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
               icon: Image.asset(
                 'assets/images/ic_product.png',
                 width: 30,
-                color: currentIndex == 1? Colors.green : Colors.black,
+                color: currentIndex == 1? Colors.lightGreen : Colors.black,
               ),
               label: 'Produk'
           ),
@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
               icon: Image.asset(
                 'assets/images/ic_order.png',
                 width: 30,
-                color: currentIndex == 2? Colors.green : Colors.black,
+                color: currentIndex == 2? Colors.lightGreen : Colors.black,
               ),
               label: 'Pesanan'
           ),
@@ -65,7 +65,7 @@ class _MainPageState extends State<MainPage> {
               icon: Image.asset(
                 'assets/images/ic_profile.png',
                 width: 30,
-                color: currentIndex == 3? Colors.green : Colors.black,
+                color: currentIndex == 3? Colors.lightGreen : Colors.black,
               ),
               label: 'Akun'
           ),

@@ -16,7 +16,7 @@ class ProductDetailNavbar extends StatelessWidget {
           child: ElevatedButton(
             onPressed: (){},
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.lightGreen,
                 minimumSize: const Size.fromHeight(55),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)
